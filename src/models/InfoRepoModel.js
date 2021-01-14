@@ -1,18 +1,15 @@
 class InfoRepoModel {
-  constructor(id, title, type, choice) {
-    this.id = id;
-    this.title = title;
-    this.type = type;
-    this.choice = choice;
-    this.disabled = false;
+  constructor(result) {
+    this.name = result?.name;
+    this.owner = result?.owner;
   }
 
-  set setDisabled(disabled) {
-    this.disabled = disabled;
+  get ownerAvatarUrl() {
+    return this.owner?.avatar_url;
   }
 
-  get getDisabled() {
-    return this.disabled;
+  get ownerLogin() {
+    return this.owner?.login;
   }
 }
 

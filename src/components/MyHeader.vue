@@ -3,10 +3,10 @@
     <div class="d-flex align-items-center">
       <img
         class="profile-avatar rounded-circle"
-        v-bind:src="repoInfo.owner.avatar_url"
+        v-bind:src="repoInfo.ownerAvatarUrl"
       />
       <div class="pl-2">
-        <h5>Usuario: {{ repoInfo.owner.login }}</h5>
+        <h5>Usuario: {{ repoInfo.ownerLogin }}</h5>
         <h6>Repositorio: {{ repoInfo.name }}</h6>
       </div>
     </div>

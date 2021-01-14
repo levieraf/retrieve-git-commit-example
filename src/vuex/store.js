@@ -1,20 +1,16 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import * as mockData from '../mockData/data';
+// import * as mockData from '../mockData/data';
+import * as Settings from '../config/settings';
 
 import CommitModel from '../models/CommitModel';
+import InfoRepoModel from '../models/InfoRepoModel';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    repoInfo: {
-      name: '',
-      owner: {
-        login: '',
-        avatar_url: '',
-      },
-    },
+    repoInfo: new InfoRepoModel(),
     commitsFromRepo: [],
   },
   getters: {
@@ -26,8 +22,8 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    setRepoInfo(state, data) {
-      state.repoInfo = data;
+    setRepoInfo(state, result) {
+      state.repoInfo = new InfoRepoModel(result);
     },
     setCommitsFromRepo(state, items) {
       let commits = [];
@@ -42,16 +38,26 @@ export default new Vuex.Store({
   actions: {
     fetchRepoInfo({ commit }) {
       return new Promise((resolve) => {
-        mockData.getRepoInfo().then((response) => {
-          commit('setRepoInfo', response);
+        // mockData.getRepoInfo().then((response) => {
+        //   commit('setRepoInfo', response);
+        //   resolve();
+        // });
+
+        Vue.http.get(Settings.repoURL).then((response) => {
+          commit('setRepoInfo', response.body);
           resolve();
         });
       });
     },
     fetchCommitsFromRepo({ commit }) {
       return new Promise((resolve) => {
-        mockData.getCommitsFromRepo().then((response) => {
-          commit('setCommitsFromRepo', response);
+        // mockData.getCommitsFromRepo().then((response) => {
+        //   commit('setCommitsFromRepo', response);
+        //   resolve();
+        // });
+
+        Vue.http.get(Settings.commitsURL).then((response) => {
+          commit('setCommitsFromRepo', response.body);
           resolve();
         });
       });
