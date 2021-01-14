@@ -2,8 +2,10 @@
 
 Para correr el app se necesita 
 
+```
 node -v v12.13.1
 npm -v 6.14.4
+```
 
 ## Pasos poner a correr el app
 
