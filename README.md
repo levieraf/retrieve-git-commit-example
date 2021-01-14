@@ -16,3 +16,7 @@ npm install
 ```
 npm run serve
 ```
+
+# retrieve-git-commit-example
+
+Demo live: https://levieraf.com/retrieve-git-commit-example/dist/
